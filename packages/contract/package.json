@@ -1,0 +1,20 @@
+{
+  "name": "contract",
+  "main": "./build/contract.js",
+  "types": "./index.ts",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "lint": "eslint \"src/*.ts*\"",
+    "build": "npx tsc"
+  },
+  "dependencies": {
+    "@types/node": "^20.4.8",
+    "@ts-rest/core": "^3.27.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.2"
+  }
+}

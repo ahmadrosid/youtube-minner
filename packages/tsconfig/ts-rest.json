@@ -1,0 +1,14 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false,
+    "composite": true,
+    "incremental": true,
+    "target": "es2019",
+    "module": "esnext",
+    "lib": ["es2019", "dom"],
+    "moduleResolution": "node",
+    "outDir": "build"
+  }
+}
