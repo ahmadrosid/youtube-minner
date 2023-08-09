@@ -82,7 +82,7 @@ export async function crawlComments(url: string, limit: number) {
   return { results, title: info.basic_info.title };
 }
 
-export async function getTranscript(url: string) {
+export async function crawlTranscript(url: string) {
   const videoId = getVideoId(url);
   const config: TranscriptConfig = {
     lang: "en",

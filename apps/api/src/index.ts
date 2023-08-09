@@ -4,8 +4,8 @@ import type { Request, Response } from "express";
 import { initServer, createExpressEndpoints } from "@ts-rest/express";
 import { generateOpenApi } from "@ts-rest/open-api";
 import { serve, setup } from "swagger-ui-express";
-import { crawlComments, getTranscript } from "./youtube";
 import { apiYoutube } from "contract";
+import controller from "./contoller";
 
 const app = express();
 
@@ -16,45 +16,8 @@ app.use(express.json());
 const s = initServer();
 
 const router = s.router(apiYoutube, {
-  fetchComments: async ({ query }) => {
-    try {
-      const data = await crawlComments(query.url, Number(query.limit) || 2);
-      return {
-        status: 200,
-        body: {
-          comments: data.results,
-          title: data.title || "",
-          total: data.results.length,
-        },
-      };
-    } catch (error: any) {
-      return {
-        status: 400,
-        body: {
-          message: error.message,
-        },
-      };
-    }
-  },
-  fetchTranscript: async ({ query }) => {
-    try {
-      const data = await getTranscript(query.url);
-      return {
-        status: 200,
-        body: {
-          title: data.title || "",
-          transcripts: data.transcript,
-        },
-      };
-    } catch (error: any) {
-      return {
-        status: 400,
-        body: {
-          message: error.message,
-        },
-      };
-    }
-  },
+  fetchComments: controller.getComments,
+  fetchTranscript: controller.getTranscript,
 });
 
 const openapiDocument = generateOpenApi(

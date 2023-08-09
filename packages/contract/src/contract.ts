@@ -28,6 +28,11 @@ const TranscripSchema = z.object({
 
 export type TranscriptResponse = z.infer<typeof TranscripSchema>;
 
+const GetCommentsQuerySchema = z.object({
+  url: z.string(),
+  limit: z.string().nullable(),
+});
+
 const CommentsSchema = z.object({
   comments: z.array(
     z.object({
@@ -52,10 +57,7 @@ export const apiYoutube = contract.router({
       200: CommentsSchema,
       400: z.object({ message: z.string() }),
     },
-    query: z.object({
-      url: z.string(),
-      limit: z.string().nullable(),
-    }),
+    query: GetCommentsQuerySchema,
     summary: "Fetch youtube comments",
   },
   fetchTranscript: {
