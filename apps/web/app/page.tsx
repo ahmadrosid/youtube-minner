@@ -28,7 +28,7 @@ async function fetchComments(youtubeUrl: string, controller: AbortController) {
   return client.fetchComments({
     query: {
       url: youtubeUrl,
-      limit: "2",
+      limit: 10,
     },
   });
 }

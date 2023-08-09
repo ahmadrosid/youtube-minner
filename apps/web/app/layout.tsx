@@ -8,6 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <title>Youtube Minner</title>
       <body className="bg-gray-50">
         <Header />
         {children}

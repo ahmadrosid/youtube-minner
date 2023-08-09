@@ -30,7 +30,7 @@ export type TranscriptResponse = z.infer<typeof TranscripSchema>;
 
 const GetCommentsQuerySchema = z.object({
   url: z.string(),
-  limit: z.string().nullable(),
+  limit: z.number().optional(),
 });
 
 const CommentsSchema = z.object({

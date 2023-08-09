@@ -46,7 +46,7 @@ export async function crawlComments(url: string, limit: number) {
   const results = [];
   let params: Parameter = {
     videoId: getVideoId(url),
-    sortBy: "NEWEST_FIRST",
+    sortBy: "TOP_COMMENTS",
   };
 
   const yt = await Innertube.create({
@@ -64,9 +64,8 @@ export async function crawlComments(url: string, limit: number) {
     results.push(comments[i]);
   }
 
-  let has_continuation = result.has_continuation;
   let loadMoreCounter = 0;
-  while (has_continuation) {
+  while (result.has_continuation) {
     result = await result.getContinuation();
     const comments = formatComment(result);
     for (let i = 0; i < comments.length; i++) {
@@ -77,8 +76,9 @@ export async function crawlComments(url: string, limit: number) {
     if (loadMoreCounter >= limit) {
       break;
     }
-    has_continuation = false;
+    console.log(loadMoreCounter);
   }
+
   return { results, title: info.basic_info.title };
 }
 
