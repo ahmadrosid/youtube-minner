@@ -1,6 +1,7 @@
 import { cn } from "ui/lib/utils";
 import { Button, buttonVariants } from "ui/components/ui/button";
 import { PanelRight } from "lucide-react";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -11,25 +12,22 @@ export function Header() {
             <a href="/" className="font-bold">
               Youtube Minner
             </a>
-            <a
-              href="/comments"
-              className={buttonVariants({ variant: "ghost" })}
-            >
+            <Link href="/" className={buttonVariants({ variant: "ghost" })}>
               Comments
-            </a>
-            <a
+            </Link>
+            <Link
               href="/transcribe"
               className={buttonVariants({ variant: "ghost" })}
             >
               Transcribe
-            </a>
+            </Link>
           </nav>
         </div>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center">
             <a
-              href="https://github.com/ahmadrosid/TitleCrafters"
+              href="https://github.com/ahmadrosid/youtube-minner"
               target="_blank"
               className={cn(
                 buttonVariants({ variant: "link" }),

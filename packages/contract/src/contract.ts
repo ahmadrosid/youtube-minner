@@ -15,6 +15,19 @@ export interface Comments {
   total: number;
 }
 
+const TranscripSchema = z.object({
+  title: z.string(),
+  transcripts: z.array(
+    z.object({
+      text: z.string(),
+      offset: z.number(),
+      duration: z.number(),
+    })
+  ),
+});
+
+export type TranscriptResponse = z.infer<typeof TranscripSchema>;
+
 const CommentsSchema = z.object({
   comments: z.array(
     z.object({
@@ -44,5 +57,17 @@ export const apiYoutube = contract.router({
       limit: z.string().nullable(),
     }),
     summary: "Fetch youtube comments",
+  },
+  fetchTranscript: {
+    method: "GET",
+    path: "/transcript",
+    responses: {
+      200: TranscripSchema,
+      400: z.object({ message: z.string() }),
+    },
+    query: z.object({
+      url: z.string(),
+    }),
+    summary: "Fetch youtube transcript",
   },
 });

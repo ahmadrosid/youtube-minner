@@ -1,5 +1,6 @@
 import { Innertube, UniversalCache } from "youtubei.js";
 import { Comment } from "contract";
+import { YoutubeTranscript, TranscriptConfig } from "youtube-transcript";
 
 type Parameter = {
   videoId: string;
@@ -53,7 +54,7 @@ export async function crawlComments(url: string, limit: number) {
   });
 
   const [info, commentResult] = await Promise.all([
-    yt.getInfo(getVideoId(url)),
+    yt.getBasicInfo(getVideoId(url)),
     yt.getComments(params.videoId, params.sortBy),
   ]);
 
@@ -79,4 +80,22 @@ export async function crawlComments(url: string, limit: number) {
     has_continuation = false;
   }
   return { results, title: info.basic_info.title };
+}
+
+export async function getTranscript(url: string) {
+  const videoId = getVideoId(url);
+  const config: TranscriptConfig = {
+    lang: "en",
+  };
+
+  const yt = await Innertube.create({
+    cache: new UniversalCache(false),
+  });
+
+  const [info, transcript] = await Promise.all([
+    yt.getBasicInfo(videoId),
+    YoutubeTranscript.fetchTranscript(videoId, config),
+  ]);
+
+  return { transcript, title: info.basic_info.title };
 }

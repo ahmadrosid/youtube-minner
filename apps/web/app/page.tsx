@@ -56,7 +56,7 @@ export default function Page() {
       const formData = new FormData(e.currentTarget);
       const youtubeUrl = formData.get("youtube_url") as string;
       if (!youtubeUrl) {
-        toast("Youtube url is required");
+        toast.error("Youtube url is required");
         return;
       }
       if (controller) {
@@ -65,6 +65,8 @@ export default function Page() {
         return;
       }
       const signal = new AbortController();
+      setComments([]);
+      setOldComments([]);
       setController(signal);
       fetchComments(youtubeUrl, signal)
         .then((res) => {
@@ -79,24 +81,37 @@ export default function Page() {
   );
 
   return (
-    <div>
-      <main className="p-8 max-w-6xl mx-auto grid gap-8">
-        <form onSubmit={handleSubmit}>
-          <div className="grid gap-4">
-            <Label>Youtube url</Label>
-            <Input
-              type="text"
-              placeholder="Youtube url..."
-              name="youtube_url"
-            />
-            <Button>
-              {controller && (
-                <Loader2Icon className="w-4 h-4 mr-2 animate-spin" />
-              )}
-              {controller ? "Cancel" : "Get comments"}
-            </Button>
-          </div>
-        </form>
+    <>
+      <Toaster />
+      <main className="p-8 container mx-auto grid gap-8">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-extrabold leading-relaxed tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl text-gray-800">
+            YouTube Comments
+          </h1>
+          <p className="text-slate-600">
+            Discover content gold in YouTube comments!
+          </p>
+        </div>
+        <div className="max-w-xl">
+          <form onSubmit={handleSubmit}>
+            <div className="flex gap-4 items-end">
+              <div className="space-y-2 grow">
+                <Label>YouTube video url</Label>
+                <Input
+                  type="text"
+                  placeholder="https://youtube.com/watch?v=.."
+                  name="youtube_url"
+                />
+              </div>
+              <Button>
+                {controller && (
+                  <Loader2Icon className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {controller ? "Cancel" : "Get comments"}
+              </Button>
+            </div>
+          </form>
+        </div>
         {comments.length > 0 && (
           <div className="space-y-4 grid">
             <div className="flex ml-auto items-center gap-2">
@@ -159,7 +174,6 @@ export default function Page() {
           </div>
         )}
       </main>
-      <Toaster />
-    </div>
+    </>
   );
 }
