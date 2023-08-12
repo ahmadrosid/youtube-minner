@@ -5,7 +5,7 @@ import { initServer, createExpressEndpoints } from "@ts-rest/express";
 import { generateOpenApi } from "@ts-rest/open-api";
 import { serve, setup } from "swagger-ui-express";
 import { apiYoutube } from "contract";
-import controller from "./contoller";
+import controller from "./controller";
 
 const app = express();
 
@@ -15,10 +15,7 @@ app.use(express.json());
 
 const s = initServer();
 
-const router = s.router(apiYoutube, {
-  fetchComments: controller.getComments,
-  fetchTranscript: controller.getTranscript,
-});
+const router = s.router(apiYoutube, controller);
 
 const openapiDocument = generateOpenApi(
   apiYoutube,
