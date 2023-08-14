@@ -27,14 +27,14 @@ importers:
   apps/api:
     dependencies:
       '@ts-rest/core':
-        specifier: ^3.27.0
-        version: 3.27.0(zod@3.21.4)
+        specifier: ^3.28.0
+        version: 3.28.0(zod@3.21.4)
       '@ts-rest/express':
-        specifier: ^3.27.0
-        version: 3.27.0(@ts-rest/core@3.27.0)(express@4.18.2)(zod@3.21.4)
+        specifier: ^3.28.0
+        version: 3.28.0(@ts-rest/core@3.28.0)(express@4.18.2)(zod@3.21.4)
       '@ts-rest/open-api':
-        specifier: ^3.27.0
-        version: 3.27.0(@ts-rest/core@3.27.0)(zod@3.21.4)
+        specifier: ^3.28.0
+        version: 3.28.0(@ts-rest/core@3.28.0)(zod@3.21.4)
       contract:
         specifier: workspace:*
         version: link:../../packages/contract
@@ -94,11 +94,11 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@ts-rest/core':
-        specifier: ^3.27.0
-        version: 3.27.0(zod@3.21.4)
+        specifier: ^3.28.0
+        version: 3.28.0(zod@3.21.4)
       '@ts-rest/react-query':
-        specifier: ^3.27.0
-        version: 3.27.0(@tanstack/react-query@4.32.6)(@ts-rest/core@3.27.0)(react@18.2.0)
+        specifier: ^3.28.0
+        version: 3.28.0(@tanstack/react-query@4.32.6)(@ts-rest/core@3.28.0)(react@18.2.0)
       contract:
         specifier: workspace:*
         version: link:../../packages/contract
@@ -1008,38 +1008,49 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /@ts-rest/express@3.27.0(@ts-rest/core@3.27.0)(express@4.18.2)(zod@3.21.4):
-    resolution: {integrity: sha512-2z8OmlE67HnkhodIgEdK1d8wOzpHIIU014EXvJD+lu7yyVGQjMCSlS7PUphm5ApYsJI1iEgic0kGB2fzVHzYcA==}
+  /@ts-rest/core@3.28.0(zod@3.21.4):
+    resolution: {integrity: sha512-m0Wn2DgO3O57dsGT5fqxvF/WNFPx/8/dxbqLMV9TYXwLBgaJG4vDgR7qXVIYss/c5vlHTQ0oB9X+PwxhI3ksMg==}
     peerDependencies:
-      '@ts-rest/core': 3.27.0
+      zod: ^3.21.0
+    peerDependenciesMeta:
+      zod:
+        optional: true
+    dependencies:
+      zod: 3.21.4
+    dev: false
+
+  /@ts-rest/express@3.28.0(@ts-rest/core@3.28.0)(express@4.18.2)(zod@3.21.4):
+    resolution: {integrity: sha512-kkFdgBCtSDGIRcnh+uJGK5BMiYo/bHMH0/zVhAA4T3Wb6PPixf80GtsT9KiOOciVrG4JtLWQbsdTh69KxjPe5g==}
+    peerDependencies:
+      '@ts-rest/core': 3.28.0
       express: ^4.0.0
       zod: ^3.21.0
     peerDependenciesMeta:
       zod:
         optional: true
     dependencies:
-      '@ts-rest/core': 3.27.0(zod@3.21.4)
+      '@ts-rest/core': 3.28.0(zod@3.21.4)
       express: 4.18.2
       zod: 3.21.4
     dev: false
 
-  /@ts-rest/open-api@3.27.0(@ts-rest/core@3.27.0)(zod@3.21.4):
-    resolution: {integrity: sha512-/BGQvLOiJ/VRDt3p0jTi+PGD8w80uBaTZddYjCKYQQops9kL6jDuf0Ars2woOYU5zlaeVy0eEDqVPjbWGMDKsQ==}
+  /@ts-rest/open-api@3.28.0(@ts-rest/core@3.28.0)(zod@3.21.4):
+    resolution: {integrity: sha512-9EG1mWxzcTriWAQGLNLXvpRT5VLKIQGPcBfTndRDsHUQe9jor+GtjEP8ttuoTfo3GlhkND9V6Qrikda1/kM0tg==}
     peerDependencies:
-      '@ts-rest/core': 3.27.0
+      '@ts-rest/core': 3.28.0
       zod: ^3.21.0
     dependencies:
       '@anatine/zod-openapi': 1.14.2(openapi3-ts@2.0.2)(zod@3.21.4)
-      '@ts-rest/core': 3.27.0(zod@3.21.4)
+      '@ts-rest/core': 3.28.0(zod@3.21.4)
       openapi3-ts: 2.0.2
       zod: 3.21.4
     dev: false
 
-  /@ts-rest/react-query@3.27.0(@tanstack/react-query@4.32.6)(@ts-rest/core@3.27.0)(react@18.2.0):
-    resolution: {integrity: sha512-XSXHqnugaevW1/h2VBBg10DEt5MPxurOMQw+HVmQtRLBDV1IgdWe2pqODBhxrqGysPAvTubqmAtW12XE1lTSKg==}
+  /@ts-rest/react-query@3.28.0(@tanstack/react-query@4.32.6)(@ts-rest/core@3.28.0)(react@18.2.0):
+    resolution: {integrity: sha512-sLMTS48TeDYz5r0sGP2OgmHghe1MvGfHrOWLGjNux13SygDwAWuo5+RMW7YEAtN5CbxJYDIMl6xP86Zc8F2v0g==}
     peerDependencies:
       '@tanstack/react-query': ^4.18.0
-      '@ts-rest/core': 3.27.0
+      '@ts-rest/core': 3.28.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       zod: ^3.21.0
     peerDependenciesMeta:
@@ -1047,7 +1058,7 @@ packages:
         optional: true
     dependencies:
       '@tanstack/react-query': 4.32.6(react-dom@18.2.0)(react@18.2.0)
-      '@ts-rest/core': 3.27.0(zod@3.21.4)
+      '@ts-rest/core': 3.28.0(zod@3.21.4)
       react: 18.2.0
     dev: false
 

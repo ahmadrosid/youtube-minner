@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.6",
-    "@ts-rest/core": "^3.27.0",
-    "@ts-rest/react-query": "^3.27.0",
+    "@ts-rest/core": "^3.28.0",
+    "@ts-rest/react-query": "^3.28.0",
     "contract": "workspace:*",
     "lucide-react": "^0.244.0",
     "next": "^13.4.1",

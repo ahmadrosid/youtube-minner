@@ -12,6 +12,13 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use((req, res, next) => {
+  if (typeof req.query.limit === "string") {
+    // @ts-expect-error this is save since we using zod from the contract
+    req.query.limit = Number(req.query.limit);
+  }
+  next();
+});
 
 const s = initServer();
 

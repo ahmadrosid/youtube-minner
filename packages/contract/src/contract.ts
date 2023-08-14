@@ -29,8 +29,8 @@ const TranscripSchema = z.object({
 export type TranscriptResponse = z.infer<typeof TranscripSchema>;
 
 const GetCommentsQuerySchema = z.object({
+  limit: z.number(),
   url: z.string(),
-  limit: z.number().optional(),
 });
 
 const CommentsSchema = z.object({
