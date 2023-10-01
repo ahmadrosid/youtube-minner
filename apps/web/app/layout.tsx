@@ -1,5 +1,6 @@
 import "ui/styles/globals.css";
 import { Header } from "./components/header";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -12,6 +13,7 @@ export default function RootLayout({
       <body className="bg-gray-50">
         <Header />
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { BrainCircuit } from "lucide-react";
+import { BrainCircuit, MoreVertical, PlusIcon } from "lucide-react";
 import { cn } from "ui/lib/utils";
 import {
   NavigationMenu,
@@ -13,6 +13,15 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "ui";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "ui";
 
 import { Button, buttonVariants } from "ui/components/ui/button";
 import { PanelRight } from "lucide-react";
@@ -21,7 +30,12 @@ export function Header() {
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
       <div className="pl-8 pr-8 flex h-14 items-center">
-        <div className="mr-4 hidden md:flex">
+        <div className="mr-4 hidden md:flex space-x-4">
+          <div className="flex items-center">
+            <Link href="/" passHref className="inline-flex">
+              <BrainCircuit className="w-6 h-6 mr-4" /> YouTube Minner
+            </Link>
+          </div>
           <Navigation />
         </div>
 
@@ -48,56 +62,39 @@ export function Header() {
   );
 }
 
-const components: { title: string; href: string; description: string }[] = [
+const tools: { title: string; href: string; description: string }[] = [
   {
     title: "Comments",
     href: "/",
     description: "Get youtube comments",
   },
   {
-    title: "Transcribe",
-    href: "/transcribe",
-    description: "Get youtube transcribe",
+    title: "Transcription",
+    href: "/transcription",
+    description: "Get youtube Transcription",
   },
 ];
 
 export function Navigation() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <BrainCircuit className="w-6 h-6 mr-4" />
-              YouTube Minner
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>All tools</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <Menubar className="border-none">
+      <MenubarMenu>
+        <MenubarTrigger asChild>
+          <Button variant="ghost" className="cursor-pointer">
+            All tools
+          </Button>
+        </MenubarTrigger>
+        <MenubarContent>
+          {tools.map((tool) => (
+            <React.Fragment key={tool.title}>
+              <MenubarItem className="cursor-pointer">
+                <a href={tool.href}>{tool.title}</a>
+              </MenubarItem>
+            </React.Fragment>
+          ))}
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
   );
 }
 
